@@ -7,6 +7,7 @@ gem 'rails', '3.2.14'
 
 gem 'backbone-on-rails'
 gem 'devise'
+gem 'figaro'
 gem 'jquery-rails'
 gem 'pg'
 gem 'underscore'
