@@ -18,14 +18,30 @@
     <%= "Logged in as " + current_user.username %>
     <%= button_to "Sign Out", destroy_user_session_url, :method => "delete" %>
 	<% else %>
-    <%=link_to "Sign In", new_user_session_url %>
     <%=link_to "Sign Up", new_user_registration_url %>
-	<% end %>
+    <%=link_to "Sign In", new_user_session_url %>
+  <% end %>    
+    
 	
 	<p class="notice"><%= notice %></p>
 	<p class="alert"><%= alert %></p>
 
+
 <%= yield %>
+
+
+<% unless user_signed_in? %>
+  <form action="<%= user_session_url %>" method="post" accept-charset="utf-8">
+    <input type="hidden" name="authenticity_token" value="form_authenticity_token">
+  
+    <input type="hidden" name="user[username]" value="Guest of Honor" id="guest-username">
+  
+    <input type="hidden" name="user[password]" value="honorableguest" id="guest[password]">
+
+    <p><input type="submit" value="Demo Account"></p>
+  </form>
+<% end %>
+  
 
 </body>
 </html>
