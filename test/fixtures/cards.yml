@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  card_name: MyString
+  due_date: 2013-11-05 16:45:34
+  completed: false
+  comment: MyText
+
+two:
+  card_name: MyString
+  due_date: 2013-11-05 16:45:34
+  completed: false
+  comment: MyText

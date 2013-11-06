@@ -11,7 +11,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131105191213) do
+ActiveRecord::Schema.define(:version => 20131106004534) do
+
+  create_table "boards", :force => true do |t|
+    t.string   "board_name", :null => false
+    t.integer  "user_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "boards", ["user_id"], :name => "index_boards_on_user_id"
+
+  create_table "cards", :force => true do |t|
+    t.string   "card_name",                     :null => false
+    t.datetime "due_date"
+    t.boolean  "completed",  :default => false
+    t.text     "comment"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "lists", :force => true do |t|
+    t.string   "list_name",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
