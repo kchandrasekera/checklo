@@ -4,10 +4,15 @@ window.TrelloClone = {
   Views: {},
   Routers: {},
   initialize: function() {
-    success: function() {
-      new TrelloClone.AppRouter();
-      Backbone.history.start();
-    }
+    this.Store = {};
+    this.Store.currentUser = JSON.parse($('#bootstrapped-user').html());
+    console.log(this.Store.currentUser);
+    
+    // this.Store.currentUser.fetch({
+//       success: function() {
+//         
+//       }
+//     });
   }
 };
 
