@@ -8,11 +8,12 @@ window.TrelloClone = {
     this.Store.currentUser = JSON.parse($('#bootstrapped-user').html());
     console.log(this.Store.currentUser);
     
+    // TrelloClone.boards = new TrelloClone.Collections.Boards();
     // this.Store.currentUser.fetch({
-//       success: function() {
-//         
-//       }
-//     });
+    //   success: function() {
+    //      
+    //   }
+    // });
   }
 };
 
