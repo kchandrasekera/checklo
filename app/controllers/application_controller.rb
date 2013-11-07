@@ -1,11 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  def after_sign_in_path_for(user)
-    user_url(user)
-  end
+  include UsersHelper
+  include StaticPagesHelper
   
-  def after_sign_out_path_for(user)
-    new_user_session_url
-  end
+  before_filter :fetch_current_user!
 end

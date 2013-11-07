@@ -8,9 +8,9 @@ window.TrelloClone = {
     // console.log(currentUser);
     
     TrelloClone.boards = new TrelloClone.Collections.Boards(currentUser.boards, {parse: true});
-    console.log(TrelloClone.boards);
-    console.log(TrelloClone.boards.last().lists());
-    console.log(TrelloClone.boards.last().lists().last().cards());
+    // console.log(TrelloClone.boards);
+    // console.log(TrelloClone.boards.last().lists());
+    // console.log(TrelloClone.boards.last().lists().last().cards());
   }
 };
 
