@@ -135,6 +135,7 @@ DEPENDENCIES
   backbone-on-rails
   coffee-rails (~> 3.2.1)
   devise
+  ejs
   figaro
   jquery-rails
   pg
