@@ -10,6 +10,7 @@ gem 'devise'
 gem 'figaro'
 gem 'jquery-rails'
 gem 'pg'
+gem 'rabl'
 gem 'underscore'
 
 # gem 'sqlite3'
