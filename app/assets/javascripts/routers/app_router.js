@@ -10,7 +10,7 @@ TrelloClone.AppRouter = Backbone.Router.extend({
   
   showBoards: function(user_id) {
     var boardView = new TrelloClone.Views.ShowBoards({
-      currentUser: currentUser.username,
+      currentUser: currentUser,
       collection: TrelloClone.boards
     });
     

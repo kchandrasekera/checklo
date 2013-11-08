@@ -1,4 +1,4 @@
-<h2><%= currentUser + "'s boards" %></h2>
+<h2><%= currentUserUsername + "'s boards" %></h2>
 
 <ul>
 <% boards.each(function(board) { %>
@@ -7,3 +7,11 @@
   </li>
 <% }); %>
 </ul>
+
+
+<form id="new-board-form">
+  <label id="board-name">Board Name</label>
+  <input type="text" name="board_name"><br>
+
+  <input type="submit" value="Create New Board"></p>
+</form>
