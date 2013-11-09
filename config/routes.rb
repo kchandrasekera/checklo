@@ -5,4 +5,6 @@ TrelloClone::Application.routes.draw do
   resources :users, :only => :show
   
   resources :boards, :only => :create
+  resources :lists, :only => :create
+  resources :cards, :only => :create
 end

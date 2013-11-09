@@ -26,7 +26,9 @@
 	<p class="alert"><%= alert %></p>
   
   <!-- bootstrap with RABL -->
-  <div id="rabl-user" data-rabl-user="<%= render(template: 'users/show.json.rabl') %>"></div>
+  <% if user_signed_in? %>
+    <div id="rabl-user" data-rabl-user="<%= render(template: 'users/show.json.rabl') %>"></div>
+  <% end %>
 
 
 <%= yield %>

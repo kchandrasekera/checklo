@@ -1,5 +1,5 @@
-TrelloClone.Views.ShowBoards = Backbone.View.extend({
-  template: JST["boards/show"],
+TrelloClone.Views.IndexBoards = Backbone.View.extend({
+  template: JST["boards/index"],
   
   initialize: function(options) {
     this.currentUser = options.currentUser;
@@ -26,11 +26,10 @@ TrelloClone.Views.ShowBoards = Backbone.View.extend({
     var newBoardData = $(event.currentTarget).serializeJSON();
     var newBoard = new TrelloClone.Models.Board(newBoardData);
     
-    that = this;
+    var boardsView = this;
     newBoard.save(null, {
       success: function() {
-        that.collection.add(newBoard, {at: 0});
-        console.log(newBoard);
+        boardsView.collection.add(newBoard, {at: 0});
       },
       error: function() {
         notice = ["Something went wrong there, buddy"];

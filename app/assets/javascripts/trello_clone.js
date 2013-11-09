@@ -5,7 +5,7 @@ window.TrelloClone = {
   Routers: {},
   initialize: function() {
     currentUser = JSON.parse($('#rabl-user').attr('data-rabl-user'));
-    TrelloClone.boards = new TrelloClone.Collections.Boards(currentUser.boards, {parse: true});
+    TrelloClone.boards = new TrelloClone.Collections.Boards(currentUser.boards, {parse: true}); 
     // console.log(currentUser);
     // console.log(TrelloClone.boards);
     // console.log(TrelloClone.boards.last().lists());
@@ -15,9 +15,9 @@ window.TrelloClone = {
   }
 };
 
-$(document).ready(function(){
-  TrelloClone.initialize();
-});
+// $(document).ready(function(){
+//   TrelloClone.initialize();
+// });
 
 
 

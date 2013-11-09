@@ -3,6 +3,4 @@ class ApplicationController < ActionController::Base
   
   include UsersHelper
   include StaticPagesHelper
-  
-  before_filter :fetch_current_user!
 end
