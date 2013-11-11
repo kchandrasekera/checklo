@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- bootstrap in the current user
   <script type="application/json" id="bootstrapped-user">
@@ -30,9 +31,9 @@
     <div id="rabl-user" data-rabl-user="<%= render(template: 'users/show.json.rabl') %>"></div>
   <% end %>
 
-
-<%= yield %>
-
+  <div container>
+    <%= yield %>
+  </div>
 
 <% unless user_signed_in? %>
   <form action="<%= user_session_url %>" method="post" accept-charset="utf-8">
