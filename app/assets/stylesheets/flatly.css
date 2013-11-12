@@ -303,7 +303,8 @@ body {
   font-size: 15px;
   line-height: 1.428571429;
   color: #2c3e50;
-  background-color: #ffffff;
+  background-image: url("backgrounds/paper.png");
+  background-repeat: repeat;
 }
 
 input,
@@ -6792,7 +6793,8 @@ a.list-group-item.active:focus .list-group-item-text {
   min-height: 20px;
   padding: 8px;
   margin-bottom: 20px;
-  background-color: #ecf0f1;
+/* original background-color: #ecf0f1;*/
+  background-color: #3498db;
   border: 1px solid #d7e0e2;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
