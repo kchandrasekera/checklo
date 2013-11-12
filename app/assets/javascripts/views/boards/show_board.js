@@ -29,7 +29,7 @@ TrelloClone.Views.ShowBoard = Backbone.View.extend({
         collection: list.cards()
       });
       
-      var lists = boardView.$el.children('.lists');
+      var lists = boardView.$el.find('.lists');
       lists.append(listView.render().$el);
       boardView.listViews.push(listView);
     });

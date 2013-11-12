@@ -1,10 +1,11 @@
-<h2> <%= "List: " + list.escape('list_name') %> </h2>
+<div class="pull-left well">
+  <legend> <%= "List: " + list.escape('list_name') %> </legend>
 
-<ul class="cards"></ul>
+  <div class="cards"></div>
 
-<form id="new-card-form">
-  <label id="card-name">Card Name</label>
-  <input type="text" name="card_name"><br>
+  <form id="new-card-form">
+    <input type="text" name="card_name"><br>
 
-  <input type="submit" value="Create New Card"></p>
-</form>
+    <p><input type="submit" value="Create New Card"></p>
+  </form>
+<div>

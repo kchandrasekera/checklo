@@ -2,7 +2,7 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
   template: JST["lists/show"],
   
   initialize: function() {
-    this.cardViews = []
+    this.cardViews = [],  
     this.listenTo(this.collection, "add", this.render)
   },
   
@@ -28,7 +28,7 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
         model: card
       });
       
-      var cards = listView.$el.children('.cards');
+      var cards = listView.$el.find('.cards'); 
       cards.append(cardView.render().$el);
       listView.cardViews.push(cardView);
     });
