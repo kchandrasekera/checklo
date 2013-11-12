@@ -1,12 +1,12 @@
-<h2>Sign in</h2>
+<!-- <h2>Sign In</h2> -->
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+<!-- <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
   <div><%= f.label :username %><br />
   <%= f.text_field :username, :autofocus => true %></div><br>
 
-  <!-- <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div><br> -->
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div><br>
 
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
@@ -16,8 +16,130 @@
   <% end -%><br>
 
   <div><%= f.submit "Sign in" %></div>
-<% end %>
+<% end %> -->
 
-<br>
 
-<%= render "devise/shared/links" %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="well">
+      <legend>Sign In</legend>
+      <form accept-charset="UTF-8" action="/users/sign_in" class="new_user form-horizontal" id="new_user" method="post">
+        
+        <div style="margin:0;padding:0;display:inline">
+          <input name="utf8" type="hidden" value="&#x2713;" />
+          <input name="authenticity_token" type="hidden" value="WEPNrbOc2+awRN04Wxnyl9gxzuQ4udMVIdwqAEwq1BY=" />
+        </div>
+
+        <div>
+          <label for="user_username">Username</label>
+          <br>
+          <input autofocus="autofocus" id="user_username" name="user[username]" size="30" type="text" />
+        </div>
+        <br>
+
+        <div>
+          <label for="user_password">Password</label>
+          <br>
+          <input id="user_password" name="user[password]" size="30" type="password" />
+        </div>
+        <br>
+
+        <div>
+          <input name="user[remember_me]" type="hidden" value="0" />
+          <input id="user_remember_me" name="user[remember_me]" type="checkbox" value="1" />
+          <label for="user_remember_me">Remember me</label>
+        </div>
+        <br>
+
+        <div><input name="commit" type="submit" value="Sign in" /></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+  <%= render "devise/shared/links" %>
+
+
+
+
+
+
+  <!-- <div class="row">
+    <div class="col-lg-6">
+      <div class="well">
+        <form class="bs-example form-horizontal">
+          <fieldset>
+            <legend>Legend</legend>
+            <div class="form-group">
+              <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+              <div class="col-lg-10">
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Checkbox
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="textArea" class="col-lg-2 control-label">Textarea</label>
+              <div class="col-lg-10">
+                <textarea class="form-control" rows="3" id="textArea"></textarea>
+                <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">Radios</label>
+              <div class="col-lg-10">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                    Option one is this
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                    Option two can be something else
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="select" class="col-lg-2 control-label">Selects</label>
+              <div class="col-lg-10">
+                <select class="form-control" id="select">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+                <br>
+                <select multiple="" class="form-control">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <button class="btn btn-default">Cancel</button> 
+                <button type="submit" class="btn btn-primary">Submit</button> 
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-4 col-lg-offset-1"> -->

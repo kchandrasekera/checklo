@@ -1,6 +1,6 @@
-<h2>Sign up</h2>
+<!-- <h2>Sign Up</h2> -->
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<!-- <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div><%= f.label :username %><br />
@@ -16,7 +16,55 @@
   <%= f.password_field :password_confirmation %></div><br>
 
   <div><%= f.submit "Sign Up" %></div>
-<% end %>
+<% end %> -->
 
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="well">
+      <legend>Sign Up</legend>
+      <form accept-charset="UTF-8" action="/users" class="new_user" id="new_user" method="post">
+        
+        <div style="margin:0;padding:0;display:inline">
+          <input name="utf8" type="hidden" value="&#x2713;" />
+          <input name="authenticity_token" type="hidden" value="WEPNrbOc2+awRN04Wxnyl9gxzuQ4udMVIdwqAEwq1BY=" />
+        </div>
+  
+
+        <div>
+          <label for="user_username">Username</label>
+          <br />
+          <input autofocus="autofocus" id="user_username" name="user[username]" size="30" type="text" />
+        </div>
+        <br>
+
+        <div>
+          <label for="user_email">Email</label>
+          <br />
+          <input autofocus="autofocus" id="user_email" name="user[email]" size="30" type="email" value="" />
+        </div>
+        <br>
+
+        <div>
+          <label for="user_password">Password</label>
+          <br />
+          <input id="user_password" name="user[password]" size="30" type="password" />
+        </div>
+        <br>
+
+        <div>
+          <label for="user_password_confirmation">Password confirmation</label>
+          <br />
+          <input id="user_password_confirmation" name="user[password_confirmation]" size="30" type="password" />
+        </div>
+        <br>
+
+        <div><input name="commit" type="submit" value="Sign Up" /></div>
+      </form>
+    </div>
+  </div>
+</div>
 
 <%= render "devise/shared/links" %>

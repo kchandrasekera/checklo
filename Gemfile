@@ -6,7 +6,6 @@ gem 'rails', '3.2.14'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'backbone-on-rails'
-gem 'bootstrap-sass'
 gem 'devise'
 gem 'ejs'
 gem 'figaro'
@@ -20,6 +19,7 @@ gem 'underscore'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+  gem 'bootstrap-sass'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'sass-rails',   '~> 3.2.3'
 

@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- bootstrap in the current user
+  <!-- bootstrap in the current user, now RABL makes this unnecessary
   <script type="application/json" id="bootstrapped-user">
     <%= { current_user: current_user }.to_json.html_safe %>
   </script> -->
@@ -31,22 +31,24 @@
     <div id="rabl-user" data-rabl-user="<%= render(template: 'users/show.json.rabl') %>"></div>
   <% end %>
 
-  <div container>
+  <div class="container">
     <%= yield %>
+    
+    
+    <% unless user_signed_in? %>
+      <form action="<%= user_session_url %>" method="post" accept-charset="utf-8">
+        <input type="hidden" name="authenticity_token" value="form_authenticity_token">
+  
+        <input type="hidden" name="user[username]" value="Guest of Honor" id="guest-username">
+  
+        <input type="hidden" name="user[password]" value="honorableguest" id="guest[password]">
+        
+        <br>
+
+        <p><input type="submit" value="Demo Account"></p>
+      </form>
+    <% end %>
   </div>
-
-<% unless user_signed_in? %>
-  <form action="<%= user_session_url %>" method="post" accept-charset="utf-8">
-    <input type="hidden" name="authenticity_token" value="form_authenticity_token">
-  
-    <input type="hidden" name="user[username]" value="Guest of Honor" id="guest-username">
-  
-    <input type="hidden" name="user[password]" value="honorableguest" id="guest[password]">
-
-    <p><input type="submit" value="Demo Account"></p>
-  </form>
-<% end %>
-  
 
 </body>
 </html>
