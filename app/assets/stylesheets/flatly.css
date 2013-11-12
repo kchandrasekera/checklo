@@ -572,6 +572,10 @@ h6,
   font-size: 13px;
 }
 
+.display-inline {
+  display: inline;
+}
+
 .page-header {
   padding-bottom: 9.5px;
   margin: 42px 0 21px;
