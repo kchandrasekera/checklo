@@ -8,11 +8,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel"> Title </h4>
+        <h4 class="modal-heading display-inline" id="myModalLabel">Card:</h4>
+        <input type="text" class="modal-title" name="card[card_name]" value="<%= card.escape('card_name') %>">
       </div>
       <div class="modal-body">
         <label for="card-comment">Comment</label><br>
-        <textarea class="modal-comment" name="card[comment]" rows="6" cols="62"> Comment </textarea>
+        <textarea class="modal-comment" name="card[comment]" rows="6" cols="62">comment</textarea><br><br>
+        
+        <label for="card-completed">Completed?</label>&nbsp;
+        <input type="checkbox" class="modal-completed" id="card-completed" name="card[completed]">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

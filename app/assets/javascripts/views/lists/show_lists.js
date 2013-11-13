@@ -12,7 +12,7 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
   
   render: function() {
     var renderedContent = this.template({
-      list: this.model,
+      list: this.model
     });
     
     this.$el.html(renderedContent);
