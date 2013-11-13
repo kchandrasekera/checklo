@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131107010502) do
+ActiveRecord::Schema.define(:version => 20131113214913) do
 
   create_table "boards", :force => true do |t|
     t.string   "board_name", :null => false
@@ -24,15 +24,17 @@ ActiveRecord::Schema.define(:version => 20131107010502) do
 
   create_table "cards", :force => true do |t|
     t.string   "card_name",                     :null => false
-    t.datetime "due_date"
+    t.date     "due_date"
     t.boolean  "completed",  :default => false
     t.text     "comment"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.integer  "list_id",                       :null => false
+    t.integer  "position",                      :null => false
   end
 
   add_index "cards", ["list_id"], :name => "index_cards_on_list_id"
+  add_index "cards", ["position"], :name => "index_cards_on_position"
 
   create_table "lists", :force => true do |t|
     t.string   "list_name",  :null => false
