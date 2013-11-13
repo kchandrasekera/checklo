@@ -4,5 +4,5 @@ class List < ActiveRecord::Base
   validates :list_name, :board_id, :presence => true
   
   belongs_to :board
-  has_many :cards
+  has_many :cards, :order => :position
 end

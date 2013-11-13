@@ -4,4 +4,5 @@ class Card < ActiveRecord::Base
   validates :card_name, :list_id, :presence => true
   
   belongs_to :list
+  acts_as_list :scope => :list
 end
