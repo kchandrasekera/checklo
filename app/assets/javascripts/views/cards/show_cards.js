@@ -2,12 +2,16 @@ TrelloClone.Views.ShowCard = Backbone.View.extend({
   template: JST["cards/show"],
   
   initialize: function() {
-    this.listenTo($("#cardModal-" + this.model.id), "hide.bs.modal", this.render);
+    var that = this;
+    this.listenTo(this.model, 'change', function () {
+      setTimeout(this.render.bind(that), 350);
+    });
   },
   
   events: {
     "click .card": "showModal",
-    "click #card-save": "saveChanges"
+    "click .card-save": "saveChanges"
+    // "hide.bs.modal .modal": "render"
   },
   
   render: function() {
@@ -41,7 +45,6 @@ TrelloClone.Views.ShowCard = Backbone.View.extend({
     this.model.set(changes);
     
     cardView = this;
-    console.log("#cardModal-" + cardView.model.id);
     this.model.save(changes, {
       success: function() {
         $("#cardModal-" + cardView.model.id).modal("hide");    

@@ -16,6 +16,7 @@
 //= require underscore
 //= require bootstrap
 //= require backbone
+//= require pace.min
 //= require trello_clone
 //= require_tree ../templates
 //= require_tree ./models
