@@ -4,7 +4,7 @@ TrelloClone::Application.routes.draw do
   devise_for :users
   resources :users, :only => :show
   
-  resources :boards, :only => :create
-  resources :lists, :only => :create
-  resources :cards, :only => :create
+  resources :boards, :only => [:create, :update, :destroy]
+  resources :lists, :only => [:create, :update, :destroy]
+  resources :cards, :only => [:create, :update, :destroy]
 end
