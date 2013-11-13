@@ -5470,8 +5470,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-btn {
-  margin-top: 8.5px;
-  margin-bottom: 8.5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .navbar-text {
@@ -8225,4 +8225,16 @@ input[type="color"]:focus,
 
 .affix {
   position: fixed;
+}
+
+.completed {
+  background-color: #2ecc71;
+}
+
+.navbar-default {
+  border-radius: 0px;
+}
+
+.navbar-inverse {
+  border-radius: 0px;
 }
