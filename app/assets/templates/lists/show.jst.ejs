@@ -1,7 +1,7 @@
 <div class="pull-left well">
   <legend>
     <%= "List: " + list.escape('list_name') %>
-    <button type="button" class="btn btn-default btn-xs pull-right trash-list">
+    <button type="button" class="button btn-danger btn-xs pull-right trash-list">
       <span class="glyphicon glyphicon-trash"></span>
     </button>
   </legend>
@@ -11,6 +11,6 @@
   <form id="new-card-form">
     <input type="text" class="new-form" placeholder="New Card Name" name="card_name"><br>
 
-    <p><input type="submit" value="Create New Card"></p>
+    <p><input type="submit" class="button btn-success" value="Create New Card"></p>
   </form>
 <div>
