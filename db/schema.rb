@@ -11,15 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131113214913) do
+ActiveRecord::Schema.define(:version => 20131114213237) do
 
   create_table "boards", :force => true do |t|
     t.string   "board_name", :null => false
     t.integer  "user_id",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "position",   :null => false
   end
 
+  add_index "boards", ["position"], :name => "index_boards_on_position"
   add_index "boards", ["user_id"], :name => "index_boards_on_user_id"
 
   create_table "cards", :force => true do |t|

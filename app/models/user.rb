@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   
   validates :username, :length => { :minimum => 6 }
   
-  has_many :boards
+  has_many :boards, :order => :position
   has_many :lists, :through => :boards
   has_many :cards, :through => :lists
 end
