@@ -4,6 +4,6 @@ class Board < ActiveRecord::Base
   validates :board_name, :user_id, :presence => true
   
   belongs_to :user
-  has_many :lists
-  has_many :cards, :through => :lists
+  has_many :lists, :dependent => :destroy
+  has_many :cards, :through => :lists, :dependent => :destroy
 end

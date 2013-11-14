@@ -9,8 +9,7 @@ TrelloClone.Views.IndexBoards = Backbone.View.extend({
   
   events: {
     "submit #new-board-form": "makeNewBoard",
-    "click .board": "boardView",
-    "click .trash-board": "deleteBoard"
+    "click .board": "boardView"
   },
   
   render: function() {
@@ -56,11 +55,5 @@ TrelloClone.Views.IndexBoards = Backbone.View.extend({
         notice = ["Something went wrong there, buddy"];
       }
     });
-  },
-  
-  boardView: function(event) {
-    console.log(event.target);
-    console.log(event.currentTarget);
-    // Backbone.history.navigate("boards/" + )
   }
-})
+});

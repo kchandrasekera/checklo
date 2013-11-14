@@ -60,7 +60,6 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
     listView = this;
     this.model.destroy({
       success: function(model, response, options) {
-        console.log(listView.$el);
         listView.$el.toggle("explode", {pieces: 49});
       }
     });
