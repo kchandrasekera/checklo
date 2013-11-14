@@ -49,7 +49,7 @@ TrelloClone.Views.IndexBoards = Backbone.View.extend({
     newBoard.save(null, {
       success: function(model, response, options) {
         boardsView.collection.add(newBoard);
-        // $("ul .dropdown-boards").append("<li><a href=#/boards/" + response.id + ">" + response.board_name + "</a></li>");
+        $("ul .dropdown-boards").append("<li><a href=#/boards/" + response.id + ">" + response.board_name + "</a></li>");
       },
       error: function() {
         notice = ["Something went wrong there, buddy"];
