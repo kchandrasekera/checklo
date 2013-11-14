@@ -2,12 +2,15 @@ TrelloClone.Views.IndexBoards = Backbone.View.extend({
   template: JST["boards/index"],
   
   initialize: function(options) {
+    this.boardItems = [];
     this.currentUser = options.currentUser;
     this.listenTo(this.collection, "add", this.render);
   },
   
   events: {
-    "submit #new-board-form": "makeNewBoard"
+    "submit #new-board-form": "makeNewBoard",
+    "click .board": "boardView",
+    "click .trash-board": "deleteBoard"
   },
   
   render: function() {
@@ -17,7 +20,24 @@ TrelloClone.Views.IndexBoards = Backbone.View.extend({
     });
     
     this.$el.html(renderedContent);
+    this.generateBoardItems();
+    
     return this;
+  },
+  
+  generateBoardItems: function() {
+    var boardIndex = this;
+    boardIndex.collection.each(function(board) {
+      var boardItem = new TrelloClone.Views.ShowBoard({
+        model: board,
+        className: "board-item",
+        id: "board-item" + board.id
+      });
+      
+      var boards = boardIndex.$el.find('.boards'); 
+      boards.append(boardItem.render().$el);
+      boardIndex.boardItems.push(boardItem);
+    });
   },
   
   makeNewBoard: function(event) {
@@ -29,12 +49,18 @@ TrelloClone.Views.IndexBoards = Backbone.View.extend({
     var boardsView = this;
     newBoard.save(null, {
       success: function(model, response, options) {
-        boardsView.collection.add(newBoard, {at: 0});
-        $("ul .dropdown-boards").prepend("<li><a href=#/boards/" + response.id + ">" + response.board_name + "</a></li>");
+        boardsView.collection.add(newBoard);
+        // $("ul .dropdown-boards").append("<li><a href=#/boards/" + response.id + ">" + response.board_name + "</a></li>");
       },
       error: function() {
         notice = ["Something went wrong there, buddy"];
       }
     });
+  },
+  
+  boardView: function(event) {
+    console.log(event.target);
+    console.log(event.currentTarget);
+    // Backbone.history.navigate("boards/" + )
   }
 })

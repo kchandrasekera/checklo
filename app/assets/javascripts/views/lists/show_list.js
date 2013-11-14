@@ -27,7 +27,7 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
     listView.collection.each(function(card) {
       var cardView = new TrelloClone.Views.ShowCard({
         model: card,
-        className: "card",
+        className: "card-el",
         id: "card-" + card.id
       });
       

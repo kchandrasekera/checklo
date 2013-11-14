@@ -8239,7 +8239,11 @@ input[type="color"]:focus,
   border-radius: 0px;
 }
 
-.list {
+.list-el {
   width: 200px;
   height: 200px;
+}
+
+.new-form {
+  margin-bottom: 5px;
 }

@@ -17,29 +17,20 @@
 
 
 
+<br><br>
 
 
 
-<h2><%= currentUserUsername + "'s boards" %></h2>
+<div class="well">
+  <legend>
+    <%= currentUserUsername + "'s boards" %>
+  </legend>
 
-&nbsp;&nbsp;&nbsp;&nbsp;
+  <div class="boards"></div>
+  
+  <form id="new-board-form">
+    <input type="text" class="new-form" placeholder="New Board Name" name="board_name"><br>
 
-
-
-
-
-<ul>
-<% boards.each(function(board) { %>
-  <li>
-    <a href=<%="#/boards/" + board.id %>> <%= board.escape('board_name') %> </a>
-  </li>
-<% }); %>
-</ul>
-
-
-<form id="new-board-form">
-  <label id="board-name">Board Name</label>
-  <input type="text" id="board-name" name="board_name"><br>
-
-  <input type="submit" value="Create New Board"></p>
-</form>
+    <input type="submit" value="Create New Board"></p>
+  </form>
+</div>
