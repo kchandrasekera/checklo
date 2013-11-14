@@ -8238,3 +8238,8 @@ input[type="color"]:focus,
 .navbar-inverse {
   border-radius: 0px;
 }
+
+.list {
+  width: 200px;
+  height: 200px;
+}

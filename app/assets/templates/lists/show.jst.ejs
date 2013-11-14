@@ -1,5 +1,10 @@
 <div class="pull-left well">
-  <legend> <%= "List: " + list.escape('list_name') %> </legend>
+  <legend>
+    <%= "List: " + list.escape('list_name') %>
+    <button type="button" class="btn btn-default btn-xs pull-right trash-list">
+      <span class="glyphicon glyphicon-trash"></span>
+    </button>
+  </legend>
 
   <div class="cards"></div>
 

@@ -7,7 +7,8 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
   },
   
   events: {
-    "submit #new-card-form": "makeNewCard"
+    "submit #new-card-form": "makeNewCard",
+    "click .trash-list": "deleteList"
   },
   
   render: function() {
@@ -25,7 +26,9 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
     var listView = this;
     listView.collection.each(function(card) {
       var cardView = new TrelloClone.Views.ShowCard({
-        model: card
+        model: card,
+        className: "card",
+        id: "card-" + card.id
       });
       
       var cards = listView.$el.find('.cards'); 
@@ -47,6 +50,18 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
       },
       error: function() {
         notice = ["Something went wrong there, buddy"];
+      }
+    });
+  },
+  
+  deleteList: function(event) {
+    event.preventDefault();
+    
+    listView = this;
+    this.model.destroy({
+      success: function(model, response, options) {
+        console.log(listView.$el);
+        listView.$el.toggle("explode", {pieces: 49});
       }
     });
   }

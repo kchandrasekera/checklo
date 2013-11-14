@@ -10,8 +10,8 @@ TrelloClone.Views.ShowCard = Backbone.View.extend({
   
   events: {
     "click .card": "showModal",
-    "click .card-save": "saveChanges"
-    // "hide.bs.modal .modal": "render"
+    "click .card-save": "saveChanges",
+    "click .trash-card": "deleteCard"
   },
   
   render: function() {
@@ -48,6 +48,18 @@ TrelloClone.Views.ShowCard = Backbone.View.extend({
     this.model.save(changes, {
       success: function() {
         $("#cardModal-" + cardView.model.id).modal("hide");    
+      }
+    });
+  },
+  
+  deleteCard: function(event) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    
+    cardView = this;
+    this.model.destroy({
+      success: function(model, response, options) {
+        cardView.$el.toggle("explode", {pieces: 25});
       }
     });
   }

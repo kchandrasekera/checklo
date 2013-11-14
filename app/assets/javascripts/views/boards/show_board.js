@@ -26,7 +26,9 @@ TrelloClone.Views.ShowBoard = Backbone.View.extend({
     boardView.collection.each(function(list) {
       var listView = new TrelloClone.Views.ShowList({
         model: list,
-        collection: list.cards()
+        collection: list.cards(),
+        className: "list",
+        id: "list-" + list.id
       });
       
       var lists = boardView.$el.find('.lists');
