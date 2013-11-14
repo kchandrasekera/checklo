@@ -17,7 +17,8 @@
 //= require bootstrap
 //= require backbone
 //= require pace.min
-//= require jquery.ui.effect.all
+//= require jquery.ui.effect-explode
+//= require jquery.ui.sortable
 //= require trello_clone
 //= require_tree ../templates
 //= require_tree ./models
