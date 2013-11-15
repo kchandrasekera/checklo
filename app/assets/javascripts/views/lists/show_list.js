@@ -8,7 +8,8 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
   
   events: {
     "submit #new-card-form": "makeNewCard",
-    "click .trash-list": "deleteList"
+    "click .trash-list": "deleteList",
+    "update-sort": "updateSort"
   },
   
   render: function() {
@@ -18,6 +19,16 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
     
     this.$el.html(renderedContent);
     this.generateCardViews();
+    
+    if (this.$('.cards').hasClass('ui-sortable')) {
+      this.$('.cards').sortable('disable');
+    }
+    this.$('.cards').sortable({
+      // trigger trigger drop event when a card's position is updated
+      update: function(event, ui) {
+        ui.item.trigger("drop", ui.item.index());
+      }
+    });
     
     return this;
   },
@@ -63,5 +74,19 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
         listView.$el.toggle("explode", {pieces: 49});
       }
     });
+  },
+  
+  updateSort: function(event, model, position) {
+    this.collection.remove(model);
+    
+    this.collection.each(function(model, index) {
+      var ordinal = index;
+      if (index >= position) {
+        ordinal += 1;
+      }
+      model.set("ordinal", ordinal);
+    });
+    
+    this.render();
   }
 });
