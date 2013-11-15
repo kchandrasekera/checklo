@@ -27,6 +27,7 @@ TrelloClone.Views.ShowBoard = Backbone.View.extend({
     boardItem.model.destroy({
       success: function(model, response, options) {
         boardItem.$el.toggle("explode", {pieces: 81});
+        $("ul .dropdown-boards").remove("<li><a href=#/boards/" + response.id + ">" + response.board_name + "</a></li>");
       }
     });
   }
