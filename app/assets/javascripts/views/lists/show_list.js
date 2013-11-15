@@ -27,55 +27,33 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
       this.$(".cards").sortable("disable");
     }
     
-    var oldList, newList, movingCard, movingCardIndex;
+    this.makeSortable();
+    
+    return this;
+  },
+  
+  makeSortable: function () {
+    var that = this;
+    var oldList, newList, movingCard, movingCardIndex, movingCardModel;
     this.$(".cards").sortable({
+      connectWith: ".cards",
       start: function(event, ui) {
         movingCard = ui.item;
         movingCardIndex = ui.item.index();
+        movingCardModel = that.collection.at(movingCardIndex);
         newList = oldList = ui.item.parent();
-        console.log("in start");
-        console.log(ui.item.parent());
       },
-      // change: function(event, ui) {
-      //   if (ui.sender) {
-      //     newList = ui.item.parent();
-      //     console.log("in change");
-      //     console.log(ui.item.parent());
-      //   }
-      // },
       stop: function(event, ui) {
-        // newList = ui.item.parent();
-        // console.log(oldList);
-        // console.log(newList);
-        // console.log(ui.sender);
-        // console.log(!!(oldList == newList));
-        // console.log(!!(ui.sender));
-        // if (oldList == newList) {
-        //   console.log("the proper place");
-        //   movingCard.trigger("card-reorder", ui.item.index());
-        // }
-        // else {
-        //   var movingModel = movingCard.trigger("get-card");
-        //   oldList.trigger("card-removal", movingModel, movingCardIndex);
-        //   newList.trigger("card-addition", movingModel, ui.placeholder.index());
-        // }
-        console.log("in stop");
-        console.log(ui.item.parent());
-        console.log(ui.sender);
-        if (!!(ui.sender)) {
-          var movingModel = movingCard.trigger("get-card");
-          console.log(movingModel);
-          oldList.trigger("card-removal", movingModel, movingCardIndex);
-          newList.trigger("card-addition", movingModel, ui.placeholder.index());   
+        newList = ui.item.parent();
+        if (newList.is(oldList)) {
+           movingCard.trigger("card-reorder", ui.item.index());
         }
-        else {
-          movingCard.trigger("card-reorder", ui.item.index());
+        else { 
+          oldList.trigger("card-removal", movingCardModel, movingCardIndex);
+          newList.trigger("card-addition", [movingCardModel, ui.item.index()]);  
         }
-      },
-      connectWith: ".cards"
+      }
     });
-    
-    return this;
   },
   
   generateCardViews: function() {
@@ -122,8 +100,6 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
   },
   
   updateList: function(event, movedModel, movedToPosition) {
-    console.log(movedModel);
-    console.log(movedToPosition);
     this.collection.remove(movedModel);
     
     this.collection.each(function(model, index) {
@@ -166,7 +142,8 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
     });
     
     movedModel.set("position", movedToPosition + 1);
-    this.collection.add(movedModel, {at: movedToPosition});
+    movedModel.set("list_id", this.collection.list_id);
+    this.collection.add(movedModel);
     
     this.collection.each(function(card) {
       card.save();

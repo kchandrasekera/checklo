@@ -45,7 +45,6 @@ TrelloClone.Views.ShowCard = Backbone.View.extend({
     var changes = {card_name: cardName, comment: cardComment, completed: cardCompleted};
     
     this.model.set(changes);
-    console.log(this.model);
     
     cardView = this;
     this.model.save(changes, {
@@ -68,12 +67,10 @@ TrelloClone.Views.ShowCard = Backbone.View.extend({
   },
   
   cardReorder: function(event, index) {
-    console.log("card reorder");
     this.$el.trigger("update-list", [this.model, index]);
   },
   
   getCard: function(event) {
-    console.log("get card");
     return this.model;
   }
 });
