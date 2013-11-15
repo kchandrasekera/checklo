@@ -7,7 +7,8 @@ TrelloClone.Views.BoardView = Backbone.View.extend({
   },
   
   events: {
-    "submit #new-list-form": "makeNewList"
+    "submit #new-list-form": "makeNewList",
+    "update-board": "updateBoard"
   },
   
   render: function() {
@@ -17,6 +18,16 @@ TrelloClone.Views.BoardView = Backbone.View.extend({
     
     this.$el.html(renderedContent);
     this.generateListViews();
+    
+    if (this.$(".lists").hasClass("ui-sortable")) {
+      this.$(".lists").sortable("disable");
+    }
+    this.$(".lists").sortable({
+      update: function(event, ui) {
+        ui.item.trigger("list-drop", ui.item.index());
+      },
+      connectWith: ".lists"
+    });
     
     return this;
   },
@@ -52,6 +63,25 @@ TrelloClone.Views.BoardView = Backbone.View.extend({
       error: function() {
         notice = ["Something went wrong there, buddy"];
       }
+    });
+  },
+  
+  updateBoard: function(event, movedList, movedToPosition) {
+    this.collection.remove(movedList);
+    
+    this.collection.each(function(list, index) {
+      var ordinal = index;
+      if (index >= movedToPosition) {
+        ordinal += 1;
+        list.set("position", ordinal + 1);
+      }
+    });
+    
+    movedList.set("position", movedToPosition + 1);
+    this.collection.add(movedList, {at: movedToPosition});
+    
+    this.collection.each(function(list) {
+      list.save();
     });
   }
 });

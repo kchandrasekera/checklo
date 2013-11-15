@@ -11,8 +11,18 @@ class ListsController < ApplicationController
     end
   end
   
+  def update
+    @list = List.find(params[:id])
+    
+    if @list.update_attributes(params[:list])
+      render :json => @list
+    else
+      render :json => @list.errors.full_messages, :status => :unprocessable_entity
+    end
+  end
+  
   def destroy
-    @list = List.find(params[:id]);
+    @list = List.find(params[:id])
     @list.destroy
     render :json => @list
   end

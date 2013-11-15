@@ -12,7 +12,7 @@ TrelloClone.Views.ShowCard = Backbone.View.extend({
     "click .card": "showModal",
     "click .card-save": "saveChanges",
     "click .trash-card": "deleteCard",
-    "drop": "drop"
+    "card-drop": "cardDrop"
   },
   
   render: function() {
@@ -66,7 +66,7 @@ TrelloClone.Views.ShowCard = Backbone.View.extend({
     });
   },
   
-  drop: function(event, index) {
-    this.$el.trigger("update-sort", [this.model, index]);
+  cardDrop: function(event, index) {
+    this.$el.trigger("update-list", [this.model, index]);
   }
 });

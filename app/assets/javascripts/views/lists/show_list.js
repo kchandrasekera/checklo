@@ -9,7 +9,8 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
   events: {
     "submit #new-card-form": "makeNewCard",
     "click .trash-list": "deleteList",
-    "update-sort": "updateSort"
+    "update-list": "updateList",
+    "list-drop": "listDrop"
   },
   
   render: function() {
@@ -20,14 +21,14 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
     this.$el.html(renderedContent);
     this.generateCardViews();
     
-    if (this.$('.cards').hasClass('ui-sortable')) {
-      this.$('.cards').sortable('disable');
+    if (this.$(".cards").hasClass("ui-sortable")) {
+      this.$(".cards").sortable("disable");
     }
-    this.$('.cards').sortable({
-      // trigger trigger drop event when a card's position is updated
+    this.$(".cards").sortable({
       update: function(event, ui) {
-        ui.item.trigger("drop", ui.item.index());
-      }
+        ui.item.trigger("card-drop", ui.item.index());
+      },
+      connectWith: ".cards"
     });
     
     return this;
@@ -76,20 +77,26 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
     });
   },
   
-  updateSort: function(event, movedModel, movedToPosition) {
+  updateList: function(event, movedModel, movedToPosition) {
     this.collection.remove(movedModel);
     
     this.collection.each(function(model, index) {
       var ordinal = index;
       if (index >= movedToPosition) {
         ordinal += 1;
+        model.set("position", ordinal + 1);
       }
-      model.set("position", ordinal + 1);
     });
     
     movedModel.set("position", movedToPosition + 1);
     this.collection.add(movedModel, {at: movedToPosition});
     
-    this.collection.each(function (card) { card.save(); });
+    this.collection.each(function(card) {
+      card.save();
+    });
+  },
+  
+  listDrop: function(event, index) {
+    this.$el.trigger("update-board", [this.model, index]);
   }
 });

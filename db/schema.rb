@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131114213237) do
+ActiveRecord::Schema.define(:version => 20131115064551) do
 
   create_table "boards", :force => true do |t|
     t.string   "board_name", :null => false
@@ -43,9 +43,11 @@ ActiveRecord::Schema.define(:version => 20131114213237) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "board_id",   :null => false
+    t.integer  "position",   :null => false
   end
 
   add_index "lists", ["board_id"], :name => "index_lists_on_board_id"
+  add_index "lists", ["position"], :name => "index_lists_on_position"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
