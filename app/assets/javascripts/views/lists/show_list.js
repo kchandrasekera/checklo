@@ -76,17 +76,24 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
     });
   },
   
-  updateSort: function(event, model, position) {
-    this.collection.remove(model);
-    
+  updateSort: function(event, movedModel, movedToPosition) {
+    this.collection.remove(movedModel);
     this.collection.each(function(model, index) {
       var ordinal = index;
-      if (index >= position) {
+      console.log(ordinal);
+      if (index >= movedToPosition) {
         ordinal += 1;
       }
-      model.set("ordinal", ordinal);
+      console.log(ordinal);
+      console.log(model.get("position"));
+      console.log(model);
+      model.set("position", ordinal + 1);
     });
+    this.collection.add(movedModel);
     
+    movedModel.set("position", movedToPosition + 1);
+    
+    this.collection.each(function (card) { card.save(); });
     this.render();
   }
 });

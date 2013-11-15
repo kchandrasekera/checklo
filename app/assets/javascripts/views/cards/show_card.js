@@ -40,10 +40,11 @@ TrelloClone.Views.ShowCard = Backbone.View.extend({
     var cardName = this.$el.find(".modal-title").val();
     var cardComment = this.$el.find(".modal-comment").val();
     var cardCompleted = this.$el.find(".modal-completed:checked").val();
-    cardCompleted = ((cardCompleted === "on") ? true : false)
+    cardCompleted = ((cardCompleted === "on") ? true : false);
     var changes = {card_name: cardName, comment: cardComment, completed: cardCompleted};
     
     this.model.set(changes);
+    console.log(this.model);
     
     cardView = this;
     this.model.save(changes, {
