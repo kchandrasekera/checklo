@@ -78,22 +78,18 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
   
   updateSort: function(event, movedModel, movedToPosition) {
     this.collection.remove(movedModel);
+    
     this.collection.each(function(model, index) {
       var ordinal = index;
-      console.log(ordinal);
       if (index >= movedToPosition) {
         ordinal += 1;
       }
-      console.log(ordinal);
-      console.log(model.get("position"));
-      console.log(model);
       model.set("position", ordinal + 1);
     });
-    this.collection.add(movedModel);
     
     movedModel.set("position", movedToPosition + 1);
+    this.collection.add(movedModel, {at: movedToPosition});
     
     this.collection.each(function (card) { card.save(); });
-    this.render();
   }
 });
