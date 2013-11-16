@@ -45,7 +45,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Boards <b class="caret"></b></a>
             <ul class="dropdown-menu dropdown-boards">
               <% current_user.boards.each do |board| %>
-                <li><a href="<%= '#/boards/' + board.id.to_s %>"><%= board.board_name %></a></li>
+                <li id="<%= 'board-item' + board.id.to_s %>"><a href="<%= '#/boards/' + board.id.to_s %>"><%= board.board_name %></a></li>
               <% end %>
             </ul>
           </li>

@@ -4,12 +4,13 @@ TrelloClone.Views.IndexBoards = Backbone.View.extend({
   initialize: function(options) {
     this.boardItems = [];
     this.currentUser = options.currentUser;
-    this.listenTo(this.collection, "add", this.render);
+    this.listenTo(this.collection, "add destroy", this.render);
   },
   
   events: {
     "submit #new-board-form": "makeNewBoard",
-    "click .board": "boardView"
+    "click .board": "boardView",
+    "remove-board": "removeBoard"
   },
   
   render: function() {
@@ -49,11 +50,25 @@ TrelloClone.Views.IndexBoards = Backbone.View.extend({
     newBoard.save(null, {
       success: function(model, response, options) {
         boardsView.collection.add(newBoard);
-        $("ul .dropdown-boards").append("<li><a href=#/boards/" + response.id + ">" + response.board_name + "</a></li>");
+        $("ul.dropdown-boards").append("<li id=board-item" + response.id +"><a href=#/boards/" + response.id + ">" + response.board_name + "</a></li>");
       },
       error: function() {
         notice = ["Something went wrong there, buddy"];
       }
     });
-  }
+  },
+  
+  // removeBoard: function(event, boardView) {
+  //   event.preventDefault();
+  //   event.stopImmediatePropagation();
+  //   
+  //   boardToDelete = boardView.model;
+  //   console.log(boardToDelete);
+  //   console.log(boardToDelete.id);
+  //   
+  //   boardView.$el.toggle("explode", {pieces: 81});
+  //   $("ul.dropdown-boards").remove("li#board-item" + boardToDelete.id);
+  //     
+  //   boardToDelete.destroy();
+  // }
 });

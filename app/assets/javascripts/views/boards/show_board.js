@@ -19,16 +19,31 @@ TrelloClone.Views.ShowBoard = Backbone.View.extend({
     Backbone.history.navigate("boards/" + this.model.id, {trigger: true}); 
   },
   
+  // deleteBoard: function(event) {
+  //   event.preventDefault();
+  //   event.stopImmediatePropagation();
+  //   
+  //   boardItem = this;
+  //   boardItem.model.destroy({
+  //     success: function(model, response, options) {
+  //       boardItem.$el.toggle("explode", {pieces: 81});
+  //       $("ul.dropdown-boards").remove("li#board-item" + boardItem.model.id);
+  //       
+  //     }
+  //   });
+  // }
+  
   deleteBoard: function(event) {
     event.preventDefault();
     event.stopImmediatePropagation();
     
-    boardItem = this;
-    boardItem.model.destroy({
-      success: function(model, response, options) {
-        boardItem.$el.toggle("explode", {pieces: 81});
-        $("ul .dropdown-boards").remove("<li><a href=#/boards/" + response.id + ">" + response.board_name + "</a></li>");
-      }
-    });
+    this.$el.toggle("explode", {pieces: 81});
+    $("li#board-item" + this.model.id).remove();
+    
+    this.model.destroy();
   }
+  
+  // deleteBoard: function(event) {
+  //   this.$el.trigger("remove-board", this);
+  // }
 });
