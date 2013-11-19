@@ -10,9 +10,11 @@ TrelloClone.Models.List = Backbone.Model.extend({
   },
   
   parse: function(serverAttributes, options) {
-    this.cards().reset(serverAttributes.cards);
-    this.cards().list_id = serverAttributes.id;
-    delete serverAttributes.cards;
+    if (serverAttributes.cards) {
+      this.cards().reset(serverAttributes.cards);
+      this.cards().list_id = serverAttributes.id;
+      delete serverAttributes.cards;
+    }
     
     return serverAttributes;
   }

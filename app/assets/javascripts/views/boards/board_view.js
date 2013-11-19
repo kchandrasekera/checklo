@@ -2,8 +2,8 @@ TrelloClone.Views.BoardView = Backbone.View.extend({
   template: JST["boards/view"],
   
   initialize: function() {
-    this.listViews = [],
-    this.listenTo(this.collection, "add", this.render)
+    this.listViews = [];
+    this.listenTo(this.collection, "add", this.render);
   },
   
   events: {
@@ -16,6 +16,7 @@ TrelloClone.Views.BoardView = Backbone.View.extend({
       board: this.model
     });
     
+    console.log(this.model);
     this.$el.html(renderedContent);
     this.generateListViews();
     
@@ -23,10 +24,10 @@ TrelloClone.Views.BoardView = Backbone.View.extend({
       this.$(".lists").sortable("disable");
     }
     this.$(".lists").sortable({
+      // connectWith: ".lists",
       update: function(event, ui) {
         ui.item.trigger("list-drop", ui.item.index());
-      },
-      connectWith: ".lists"
+      }
     });
     
     return this;
@@ -35,6 +36,7 @@ TrelloClone.Views.BoardView = Backbone.View.extend({
   generateListViews: function() {
     var boardView = this;
     boardView.collection.each(function(list) {
+      console.log(list);
       var listView = new TrelloClone.Views.ShowList({
         model: list,
         collection: list.cards(),
@@ -66,19 +68,21 @@ TrelloClone.Views.BoardView = Backbone.View.extend({
     });
   },
   
-  updateBoard: function(event, movedList, movedToPosition) {
+  updateBoard: function(event, movedList, movedToIndex, associatedCards) {
+    // console.log(movedList);
     this.collection.remove(movedList);
     
     this.collection.each(function(list, index) {
       var ordinal = index;
-      if (index >= movedToPosition) {
+      if (index >= movedToIndex) {
         ordinal += 1;
         list.set("position", ordinal + 1);
       }
     });
     
-    movedList.set("position", movedToPosition + 1);
-    this.collection.add(movedList, {at: movedToPosition});
+    movedList.set("position", movedToIndex + 1);
+    
+    this.collection.add(movedList, {at: movedToIndex});
     
     this.collection.each(function(list) {
       list.save();

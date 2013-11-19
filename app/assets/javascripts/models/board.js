@@ -10,8 +10,10 @@ TrelloClone.Models.Board = Backbone.Model.extend({
   },
   
   parse: function(serverAttributes, options) {
-    this.lists().reset(serverAttributes.lists, {parse: true});
-    delete serverAttributes.lists;
+    if (serverAttributes.lists) {
+      this.lists().reset(serverAttributes.lists, {parse: true});
+      delete serverAttributes.lists;
+    }
     
     return serverAttributes;
   }
