@@ -2,8 +2,9 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
   template: JST["lists/show"],
   
   initialize: function() {
-    this.cardViews = [],  
-    this.listenTo(this.collection, "add", this.render)
+    this.cardViews = [];
+    this.listenTo(this.collection, "add", this.render);
+    this.listenTo(this.model, "sync", this.render);
   },
   
   events: {
@@ -12,7 +13,8 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
     "update-list": "updateList",
     "card-removal": "cardRemoval",
     "card-addition": "cardAddition",
-    "list-drop": "listDrop"
+    "list-drop": "listDrop",
+    "click legend": "editList"
   },
   
   render: function() {
@@ -155,5 +157,11 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
   
   listDrop: function(event, index) {
     this.$el.trigger("update-board", [this.model, index, this.collection]);
+  },
+  
+  editList: function(event) {
+    var editList = new TrelloClone.Views.EditList({model: this.model});
+    
+    $(event.target).html(editList.render().$el);
   }
 });

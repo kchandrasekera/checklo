@@ -12,6 +12,16 @@ class BoardsController < ApplicationController
     end
   end
   
+  def update
+    @board = Board.find(params[:id])
+    
+    if @board.update_attributes(params[:board])
+      render :json => @board
+    else
+      render :json => @board.errors.full_messages, :status => :unprocessable_entity
+    end
+  end
+  
   def destroy
     @board = Board.find(params[:id])
     @board.destroy

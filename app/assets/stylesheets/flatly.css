@@ -41,6 +41,7 @@ html {
 
 body {
   margin: 0;
+  overflow: scroll;
 }
 
 a {
@@ -6463,7 +6464,6 @@ a.list-group-item.active:focus .list-group-item-text {
   background-color: #ffffff;
   border: 1px solid transparent;
   border-radius: 4px;
-  cursor: pointer;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
@@ -8253,3 +8253,14 @@ input[type="color"]:focus,
 .devise-form {
   width: 35%;
 }
+
+.board {
+  cursor: pointer;
+}
+
+/*.card {
+  cursor: url(https://mail.google.com/mail/images/2/openhand.cur), default !important;
+}*/
+
+.grab { cursor: url(https://mail.google.com/mail/images/2/openhand.cur) 8 8, move; }
+.grabbing { cursor: url(https://mail.google.com/mail/images/2/closedhand.cur) 8 8, move; }

@@ -4,11 +4,13 @@ TrelloClone.Views.BoardView = Backbone.View.extend({
   initialize: function() {
     this.listViews = [];
     this.listenTo(this.collection, "add", this.render);
+    this.listenTo(this.model, "sync", this.render);
   },
   
   events: {
     "submit #new-list-form": "makeNewList",
-    "update-board": "updateBoard"
+    "update-board": "updateBoard",
+    "click .board-title": "editBoard"
   },
   
   render: function() {
@@ -87,5 +89,11 @@ TrelloClone.Views.BoardView = Backbone.View.extend({
     this.collection.each(function(list) {
       list.save();
     });
+  },
+  
+  editBoard: function(event) {
+    var editBoard = new TrelloClone.Views.EditBoard({model: this.model});
+    
+    $(event.target).html(editBoard.render().$el);
   }
 });
