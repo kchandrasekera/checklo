@@ -14,7 +14,7 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
     "card-removal": "cardRemoval",
     "card-addition": "cardAddition",
     "list-drop": "listDrop",
-    "click legend": "editList"
+    "click .list-title": "editList"
   },
   
   render: function() {
@@ -92,7 +92,7 @@ TrelloClone.Views.ShowList = Backbone.View.extend({
   },
   
   deleteList: function(event) {
-    event.preventDefault();
+    event.stopPropagation();
     
     listView = this;
     this.model.destroy({

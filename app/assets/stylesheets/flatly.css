@@ -8258,6 +8258,14 @@ input[type="color"]:focus,
   cursor: pointer;
 }
 
+.board-title {
+  cursor: pointer;
+}
+
+.list-title {
+  cursor: pointer;
+}
+
 /*.card {
   cursor: url(https://mail.google.com/mail/images/2/openhand.cur), default !important;
 }*/
