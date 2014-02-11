@@ -203,5 +203,6 @@ DEPENDENCIES
   rabl
   rails (= 3.2.14)
   sass-rails (~> 3.2.6)
+  sprockets
   uglifier (>= 1.0.3)
   underscore
