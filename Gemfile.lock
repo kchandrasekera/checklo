@@ -202,6 +202,6 @@ DEPENDENCIES
   pg
   rabl
   rails (= 3.2.14)
-  sass-rails (~> 3.2.3)
+  sass-rails (~> 3.2.6)
   uglifier (>= 1.0.3)
   underscore
