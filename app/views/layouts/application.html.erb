@@ -6,20 +6,14 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- bootstrap in the current user, now RABL makes this unnecessary
-  <script type="application/json" id="bootstrapped-user">
-    <%= { current_user: current_user }.to_json.html_safe %>
-  </script> -->
-  
 </head>
 
 <body>
-  <!-- bootstrap with RABL -->
+  <!-- bootstrap in current user with RABL -->
   <% if user_signed_in? %>
     <div id="rabl-user" data-rabl-user="<%= render(template: 'users/show.json.rabl') %>"></div>
   <% end %>
-  
+
   <nav class="navbar navbar-inverse" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -29,11 +23,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <% if user_signed_in? %>
+      <!-- <% if user_signed_in? %>
         <a class="navbar-brand" href="#">Checklo!</a>
       <% else %>
         <a class="navbar-brand" href="#">Checklo!</a>
-      <% end %>
+      <% end %> -->
+      <a class="navbar-brand" href="<%= root_url %>">Checklo!</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -45,7 +40,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Boards <b class="caret"></b></a>
             <ul class="dropdown-menu dropdown-boards">
               <% current_user.boards.each do |board| %>
-                <li id="<%= 'board-item' + board.id.to_s %>"><a href="<%= '#/boards/' + board.id.to_s %>"><%= board.board_name %></a></li>
+                <li id="<%= 'board-item' + board.id.to_s %>"><a href='<%= "#{root_path}#/boards/#{board.id.to_s}" %>'><%= board.board_name %></a></li>
               <% end %>
             </ul>
           </li>
@@ -54,8 +49,8 @@
                 <span class="glyphicon glyphicon-cog"></span> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu dropdown-cog">
-              <li><a href="#">About</a></li>
-              <li><a href="#">Profile</a></li>
+              <li><a href="/about">About</a></li>
+              <!-- <li><a href="#">Profile</a></li> -->
               <li class="divider"></li>
               <li><%= link_to("Sign Out", destroy_user_session_url, :method => :delete) %></li>
             </ul>
@@ -66,43 +61,46 @@
         <li><a href="<%= new_user_session_url %>">Sign In</a></li>
         <li><a href="<%= new_user_registration_url %>">Sign Up</a></li>
       </ul>
-      <% end %>    
-      
+      <% end %>
+
     </div><!-- /.navbar-collapse -->
   </nav>
-  
-  
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
-  
+
 
   <div class="container">
-    <% if user_signed_in? %>
-    <h4 class="display-inline">Share your experience!</h4>
-    
-      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.checklo.com" data-text="Check out this site I use for managing my projects and my life!">Tweet</a>
-      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>      
+
+    <% if notice %>
+    	<div class="notice alert alert-info alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= notice %></div>
     <% end %>
 
-  
+    <% if alert %>
+    	<div class="alert alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= alert %></div>
+    <% end %>
+
+    <% if user_signed_in? %>
+    <h4 class="display-inline">Share your experience!</h4>
+
+      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.checklo.com" data-text="Check out this site I use for managing my projects and my life!">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>      <% end %>
+
+
     <%= yield %>
-    
-    
+
+
     <% unless user_signed_in? %>
       <form action="<%= user_session_url %>" method="post" accept-charset="utf-8">
         <input type="hidden" name="authenticity_token" value="form_authenticity_token">
-  
         <input type="hidden" name="user[username]" value="Guest of Honor" id="guest-username">
-  
         <input type="hidden" name="user[password]" value="honorableguest" id="guest[password]">
-        
         <br>
-
         <p><input type="submit" class="button btn-primary" value="One Click Guest Access"></p>
       </form>
     <% end %>
   </div>
-  
 
 </body>
 </html>

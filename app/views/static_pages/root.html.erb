@@ -1,7 +1,92 @@
 <div id="content"></div>
 
-<script type="text/javascript">
-  $(document).ready(function(){
-    TrelloClone.initialize();
-  });
-</script>
+
+<% if user_signed_in? %>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      TrelloClone.initialize();
+    });
+  </script>
+
+<% else %>
+
+  <div id="feature-carousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#feature-carousel" data-slide-to="0"></li>
+      <li data-target="#feature-carousel" data-slide-to="1"></li>
+      <li data-target="#feature-carousel" data-slide-to="2"></li>
+      <li data-target="#feature-carousel" data-slide-to="3"></li>
+      <li data-target="#feature-carousel" data-slide-to="4"></li>
+      <li data-target="#feature-carousel" data-slide-to="5"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+
+      <!-- Slide 0-->
+      <div class="item active">
+        <img src="/assets/0boards.jpg" alt="Slide 0" />
+        <div class="carousel-caption">
+          <h1>Organize</h1>
+          <p>Compile your projects and interests into boards</p>
+        </div>
+      </div>
+
+      <!-- Slide 1-->
+      <div class="item">
+        <img src="/assets/1lists.jpg" alt="Slide 1" />
+        <div class="carousel-caption">
+          <h1>Visualize</h1>
+          <p>Break any project into lists</p>
+        </div>
+      </div>
+
+      <!-- Slide 2-->
+      <div class="item">
+        <img src="/assets/2swap.jpg" alt="Slide 2" />
+        <div class="carousel-caption">
+          <h1>Prioritize</h1>
+          <p>Move action items around for optimal re-ordering</p>
+        </div>
+      </div>
+
+      <!-- Slide 3-->
+      <div class="item">
+        <img src="/assets/3modal.jpg" alt="Slide 3" />
+        <div class="carousel-caption">
+          <h1>Specify</h1>
+          <p>Describe your tasks and mark them when completed</p>
+        </div>
+      </div>
+
+      <!-- Slide 4-->
+      <div class="item">
+        <img src="/assets/4complete.jpg" alt="Slide 4" />
+        <div class="carousel-caption">
+          <h1>Achieve</h1>
+          <p>Understand the state of your project at a glance</p>
+        </div>
+      </div>
+
+      <!-- Slide 5-->
+      <div class="item">
+        <img src="assets/5tweet.jpg" alt="Slide 5" />
+        <div class="carousel-caption">
+          <h1>Connect</h1>
+          <p>Share your Checklo! on Twitter</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#feature-carousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#feature-carousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+  </div>
+
+<% end %>

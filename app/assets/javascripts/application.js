@@ -14,11 +14,11 @@
 //= require jquery_ujs
 //= require jquery.serializeJSON.min
 //= require underscore
-//= require bootstrap
 //= require backbone
 //= require pace.min
-//= require jquery.ui.effect-explode
-//= require jquery.ui.sortable
+// = require jquery.ui.effect-explode
+// = require jquery.ui.sortable
+//= require bootstrap
 //= require trello_clone
 //= require_tree ../templates
 //= require_tree ./models

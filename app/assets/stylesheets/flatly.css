@@ -7273,6 +7273,7 @@ button.close {
 
 .carousel {
   position: relative;
+  border: 5px solid #000000;
 }
 
 .carousel-inner {
@@ -7341,7 +7342,7 @@ button.close {
   left: 0;
   width: 15%;
   font-size: 20px;
-  color: #ffffff;
+  color: #2E5C00;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
   opacity: 0.5;
@@ -7370,7 +7371,7 @@ button.close {
 
 .carousel-control:hover,
 .carousel-control:focus {
-  color: #ffffff;
+  color: #2E5C00;
   text-decoration: none;
   opacity: 0.9;
   filter: alpha(opacity=90);
@@ -7436,13 +7437,14 @@ button.close {
   background-color: rgba(0, 0, 0, 0);
   border: 1px solid #ffffff;
   border-radius: 10px;
+  border-color: #888;
 }
 
 .carousel-indicators .active {
   width: 12px;
   height: 12px;
   margin: 0;
-  background-color: #ffffff;
+  background-color: #00FF00;
 }
 
 .carousel-caption {
@@ -7453,7 +7455,7 @@ button.close {
   z-index: 10;
   padding-top: 20px;
   padding-bottom: 20px;
-  color: #ffffff;
+  color: #2E5C00;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
@@ -8269,6 +8271,10 @@ input[type="color"]:focus,
 /*.card {
   cursor: url(https://mail.google.com/mail/images/2/openhand.cur), default !important;
 }*/
+
+.card {
+  cursor: pointer;
+}
 
 .grab { cursor: url(https://mail.google.com/mail/images/2/openhand.cur) 8 8, move; }
 .grabbing { cursor: url(https://mail.google.com/mail/images/2/closedhand.cur) 8 8, move; }

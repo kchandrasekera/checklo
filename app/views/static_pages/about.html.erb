@@ -1,0 +1,19 @@
+<h2> About Checklo! </h2>
+
+<h4>
+  Checklo! is an open-source tool for organizing your life. Our need to constantly reprioritize, add, and
+  modify tasks on different timescales for different projects is growing. It is no longer feasible to
+  organize this level of multitasking with a traditional to-do list. That's where Checklo! can help. With
+  dynamic action items, lists, and projects, it's easy to stay on top of the details.
+</h4>
+
+
+<% if user_signed_in? %>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      TrelloClone.initialize();
+    });
+  </script>
+
+<% end %>

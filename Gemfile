@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby "1.9.3"
 gem 'rails', '3.2.14'
 
 # Bundle edge Rails instead:
@@ -35,6 +36,10 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
+end
+
+group :development, :test do
+  gem 'cucumber-rails', :require => false
 end
 
 # To use ActiveModel has_secure_password

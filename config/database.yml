@@ -1,14 +1,20 @@
 development:
   adapter: postgresql
+  encoding: unicode
   database: trello_clone_development
   host: localhost
   pool: 5
-  
+  username: ksc
+  password: temp
+
 test:
   adapter: postgresql
+  encoding: unicode
   database: trello_clone_test
   host: localhost
   pool: 5
+  username: ksc
+  password: temp
 
 # May delete production section... Heroku ignores it
 production:
