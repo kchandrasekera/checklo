@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me
 
-  validates :username, :length => { :minimum => 6 }
+  validates :username, :uniqueness => true, :length => { :minimum => 6, :too_short => "minimum length is 6 characters" }
 
   has_many :boards, :order => :position
   has_many :lists, :through => :boards
