@@ -97,8 +97,8 @@
 
     <%= yield %>
 
-
-    <% unless user_signed_in? %>
+    <!-- Guest Account Access -->
+    <!-- <% unless user_signed_in? %>
       <form action="<%= user_session_url %>" method="post" accept-charset="utf-8">
         <input type="hidden" name="authenticity_token" value="form_authenticity_token">
         <input type="hidden" name="user[username]" value="Guest of Honor" id="guest-username">
@@ -106,7 +106,7 @@
 
         <p><input type="submit" class="button btn-success" value="One Click Guest Access"></p>
       </form>
-    <% end %>
+    <% end %> -->
   </div>
 
 </body>
